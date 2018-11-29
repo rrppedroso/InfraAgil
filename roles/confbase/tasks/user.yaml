@@ -1,0 +1,11 @@
+
+- name: criando os usuarios padroes para todas as maquinas
+  user:
+   name: "{{item.nome}}"
+   password: "{{item.senha}}"
+   state: "{{item.estado}}"
+   home: "{{item.casa}}"
+  with_items:
+   - { nome: rodrigo, senha: '$1$MBBkOylD$K/hUmHv1gusRDqA.KvUil/', estado: present, casa: /srv/rodrigo } 
+   - { nome: developer, senha: '$1$MBBkOylD$K/hUmHv1gusRDqA.KvUil/', estado: present, casa: /srv/developer }     
+   - { nome: devops, senha: '$1$MBBkOylD$K/hUmHv1gusRDqA.KvUil/', estado: present, casa: /srv/devops }

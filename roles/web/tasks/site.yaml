@@ -1,0 +1,4 @@
+- name: enviando um arquivo site
+  template:
+   src: templates/config
+   dest: /tmp/config

@@ -1,0 +1,31 @@
+---
+- name: exercicio de fixacao
+  hosts: all
+  tasks:
+
+  - name: criar usuarios
+    package:
+     name: "{{usuario}}"
+    with_items:
+      - devops
+      - developer
+      - "{{seunome}}"
+
+  - name: instalando o epel-reliase #só existe para o cent_os
+    package:
+     name: epel-release
+    when: ansible_os_family == "RedHat"
+    register: pacote
+
+  - name: instalando os pacotes basicos
+    package:
+     name: "{{item}}"
+    with_items:
+      - vim
+      - htop
+      - figlet
+      - cowsay
+    when: pacote.rc == 0
+    ignore_errors: yes
+      
+~         

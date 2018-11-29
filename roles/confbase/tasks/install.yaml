@@ -1,0 +1,18 @@
+
+- name: instalando pacotes padroes para debian
+  package:
+   name:
+    - htop
+    - vim
+    - sysstat
+    - cowsay
+  when: ansible_os_family == "Debian" #variavel que  busca no setup/factory (checklist da maquina) da maquina
+
+- name: instalando pacotes padroes para cent_os
+  package:
+   name:
+    - epel-release
+    - vim
+    - sysstat
+  when: ansible_os_family == "RedHat" #variavel que  busca no setup/factory (checklist da maquina) da maquina
+

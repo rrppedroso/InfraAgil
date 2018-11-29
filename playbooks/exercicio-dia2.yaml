@@ -1,5 +1,0 @@
-- name: minha primeira role
-  hosts: devops
-  roles:
-   - web
-

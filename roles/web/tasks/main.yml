@@ -1,9 +1,0 @@
----
-# tasks file for web
-
-- name: playbook de instalacao de pacotes
-  include: install.yaml
-
-- name: playbook de criacao de site
-  include: site.yaml 	
-

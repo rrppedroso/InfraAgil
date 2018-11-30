@@ -1,0 +1,6 @@
+#Executando a role container-docker
+- name: criando os volumes e os containers
+  hosts: docker
+  roles:
+   - container-docker
+       

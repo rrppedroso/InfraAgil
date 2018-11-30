@@ -1,0 +1,59 @@
+---
+# tasks file for deploy-bluegreen
+
+- name: verificando o container que esta no ar
+  stat:
+   path: /etc/nginx/sites-enabled/green.conf #poderia verificar ou green ou blue (soh precisamos saber qual esta lah)
+  register: vhost #saida da consulta (se o green existe) - vhost = True (existe) | vhost = False = (nao existe)
+
+- name: copiando o site blue #como pesquisamos pelo green, aqui vamos copiar o blue
+  copy:
+   src: "{{jenkinsdir}}/deploy/index.html" #origem. a variavel {{jenkinsdir}} foi criada no arquivo /deploy-bluegreen/vars/main.yml
+   dest: "{{dockerdir}}/blue/_data/index.html" #destino. a variavel {{dockerdir}} foi criada no arquivo /deploy-bluegreen/vars/main.yml
+  when: vhost.stat.exists == True #True tem que ser com T maiusculo | vhost eh a variavel register do primeiro modulo
+
+- name: copiando o site green
+  copy:
+   src: "{{jenkinsdir}}/deploy/index.html" #origem. a variavel {{jenkinsdir}} foi criada no arquivo /deploy-bluegreen/vars/main.yml
+   dest: "{{dockerdir}}/green/_data/index.html" #destino. a variavel {{dockerdir}} foi criada no arquivo /deploy-bluegreen/vars/main.yml
+  when: vhost.stat.exists == False #True tem que ser com T maiusculo | vhost eh a variavel register do primeiro modulo
+
+- name: pegando o ip do container green #quando o vhost for False (o container blue esta no ar), ai temos que pegar o ip do green para por ele no ar
+  shell: "docker exec green hostname -I" #pega o ip via comando
+  register: ipgreen
+  when: vhost.stat.exists == False 
+
+- name: pegando o ip do container blue #quando o vhost for True (o container green esta no ar), ai temos que pegar o ip do blue para por ele no ar
+  shell: "docker exec blue hostname -I" #pega o ip via comando
+  register: ipblue
+  when: vhost.stat.exists == True
+
+- name: criando o arquivo conf com vhost do green #quando o vhost for False (o conf do blue existe), ai temos que criar o do green
+  template:
+   src: templates/vhost_green #origem
+   dest: /etc/nginx/sites-enabled/green.conf #destino 
+  when: vhost.stat.exists == False 
+
+- name: criando o arquivo conf com vhost do blue #quando o vhost for True (o conf do gree existe), ai temos que criar o do blue
+  template:
+   src: templates/vhost_blue #origem
+   dest: /etc/nginx/sites-enabled/blue.conf #destino 
+  when: vhost.stat.exists == True
+
+- name: apagando o ambiente do green #quando o vhost for True (o ambiente do gree existe), ai temos que apaga-lo para deixar o do blue
+  file:
+   path: /etc/nginx/sites-enabled/green.conf
+   state: absent
+  when: vhost.stat.exists == True
+
+- name: apagando o ambiente do blue #quando o vhost for False (o ambiente do blue existe), ai temos que apaga-lo para deixar o do green
+  file:
+   path: /etc/nginx/sites-enabled/blue.conf
+   state: absent
+  when: vhost.stat.exists == False
+
+- name: realizando o restart no nginx #restarta o nginx nas duas condicoes
+  service: 
+   name: nginx
+   state: restarted
+

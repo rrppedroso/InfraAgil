@@ -1,0 +1,5 @@
+#Executando a role pre-docker
+- name: executando a playbook de pre-quisitos
+  hosts: docker
+  roles:
+   - pre-docker

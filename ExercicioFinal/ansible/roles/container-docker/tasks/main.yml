@@ -1,0 +1,21 @@
+---
+# tasks file for container-docker
+
+- name: criando os volumes estaticos do docker (tanto pra blue e green)
+  docker_volume:
+   name: "{{item}}"
+   state: present
+  with_items:
+   - blue
+   - green
+
+- name: criando os containers blue e green
+  docker_container:
+   name: "{{item}}"
+   image: httpd #imagem do nginx (usa o caminho como apache2)
+   state: started #cria e starta o container. se nao colocar, ele cria e deixa o container parado!
+   volumes: #mapeamento remoto - origem (maquina hospedeira) X destino no container 
+    - "{{item}}:/usr/local/apache2/htdocs"
+  with_items:
+   - blue
+   - green

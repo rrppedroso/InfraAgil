@@ -1,0 +1,25 @@
+---
+# tasks file for pre-docker
+
+- name: garantindo os pacotes principais
+  package:
+   name: 
+    - docker-ce
+    - nginx
+    - python-pip
+
+- name: instalando o docker-py
+  pip:
+   name: docker-py
+
+# Como vamos usar o ansible e ele é todo script em Python, necessário instalar utilizando o pip.
+
+- name: garantindo os serviços nginx e docker rodando
+  service:
+   name: "{{item}}"
+   state: started
+  with_items: # lista que alimenta a variavel "{{item}}"
+   - nginx
+   - docker
+
+

@@ -1,0 +1,142 @@
+    1  exit
+    2  vim /etc/ssh/sshd_config
+    3  vi /etc/ssh/sshd_config
+    4  systemctl restar ssh
+    5  systemctl restart ssh
+    6  ssh localhost
+    7  systemctl restart ssh
+    8  systemctl restart sshd
+    9  ssh localhost
+   10  passwd root
+   11  ssh localhost
+   12  exit
+   13  ss -ntpl | grep 22
+   14  ssh localhost
+   15  ls -l
+   16  vim /etc/ssh/sshd_config 
+   17  sudo su -
+   18  exit
+   19  puppet resource package puppetserver
+   20  puppet resource package puppetserver ensure=running
+   21  puppet agent -t --server devops.dexter.com.br
+   22  cat /etc/puppetlabs/puppet/puppet.conf 
+   23  vim /etc/rundeck/framework.properties 
+   24  vim /etc/rundeck/log4j.properties 
+   25  vim /etc/rundeck/rundeck-config.properties 
+   26  systemctl restart rundeckd
+   27  ss -ntpl
+   28  vim /tmp/nodes 
+   29  su - rundeck
+   30  vim /tmp/nodes 
+   31  su rundeck -
+   32  su - rundeck
+   33  systemctl stop rundeckd
+   34  vim /etc/sysconfig/jenkins 
+   35  systemctl restart jenkins
+   36  ss -ntpl
+   37  cat /var/lib/jenkins/secrets/initialAdminPassword
+   38  cat /tmp/infraagil/index.html
+   39  git clone http://192.168.33.151/root/site.git
+   40  cd site/
+   41  vim index.html 
+   42  cat /tmp/infraagil/index.html 
+   43  git add .
+   44  git commit -m "testando webhook"
+   45  git push
+   46  ls
+   47  cat index.html 
+   48  cd /tmp/infraagil/
+   49  ls
+   50  cat index.html 
+   51  yum install ansible -y
+   52  cd /etc/ansible/
+   53  ansible --version
+   54  vim ansible.cfg 
+   55  vipw 
+   56  su - jenkins
+   57  vim hosts
+   58  ls
+   59  cd roles/
+   60  ansible-galaxy init pre-docker
+   61  ansible-galaxy init container-docker
+   62  ansible-galaxy init deploy-bluegreen
+   63  cd pre-docker/tasks/
+   64  vim main.yml
+   65  cd ../../container-docker/tasks/
+   66  vim main.yml 
+   67  cd ../../deploy-bluegreen/tasks/
+   68  vim main.yml 
+   69  vim ../vars/main.yml 
+   70  cd ../../deploy-bluegreen/tasks/
+   71  vim main.yml 
+   72  cd /etc/ansible/
+   73  vim pre.yaml
+   74  vim container.yaml
+   75  vim pre.yaml
+   76  vim container.yaml
+   77  vim pre.yaml
+   78  vim bluegreen.yaml
+   79  vim pre.yaml
+   80  vim bluegreen.yaml
+   81  ls
+   82  su - jenkins
+   83  vim bluegreen.yaml
+   84  vim pre.yaml
+   85  cd roles/
+   86  ls
+   87  vim container-docker/
+   88  cd container-docker/
+   89  ls
+   90  cd files/
+   91  ls
+   92  cs..
+   93  cd tasks
+   94  cd ..
+   95  cd tasks/
+   96  ls
+   97  vim main.yml 
+   98  su - jenkins
+   99  ls
+  100  cd ..
+  101  ls
+  102  cd ..
+  103  ls
+  104  cd pre-docker/
+  105  ls
+  106  cd ..
+  107  ls
+  108  cd roles/
+  109  ls
+  110  cd ..
+  111  ls
+  112  vim pre.yaml 
+  113  su - jenkins
+  114  cd /etc/ansible/roles/deploy-bluegreen/templates/
+  115  vim vhosts_blue
+  116  cp vhost_blue vhost_green
+  117  vim vhosts_green
+  118  vim vhost_green
+  119  ls
+  120  mv vhosts_blue vhost_blue
+  121  ls
+  122  cp vhost_blue vhost_green
+  123  vim vhost_green
+  124  ssh docker.dexter.com.br
+  125  exit
+  126  cd /etc/ansible/
+  127  ls
+  128  cd roles/
+  129  ls
+  130  cd deploy-bluegreen/
+  131  ls
+  132  cd templates/
+  133  ls
+  134  cat vhost_blue
+  135  cat vhost_green
+  136  ssh devops
+  137  exit
+  138  ls
+  139  cd /tmp/
+  140  ls
+  141  cd ..
+  142  history >> /tmp/comandosAutomation.txt

@@ -1,0 +1,255 @@
+    1  exit
+    2  ssh localhost
+    3  vim /etc/ssh/sshd_config 
+    4  systemctl restart ssh
+    5  ssh localhost
+    6  passwd root
+    7  ssh localhost
+    8  exit
+    9  apt update && apt install python -y
+   10  exit
+   11  puppet config print
+   12  puppet agent -t --server devops.dexter.com.br
+   13  cat /etc/puppetlabs/puppet/puppet.conf 
+   14  vim /etc/puppetlabs/puppet/puppet.conf 
+   15  cat /etc/puppetlabs/puppet/puppet.conf 
+   16  puppet agent -t --server devops.dexter.com.br
+   17  apt remove figlet -y
+   18  figlet
+   19  puppet agent -t
+   20  cat /var/www/html/index.html
+   21  cat /etc/puppetlabs/puppet/puppet.conf 
+   22  echo banana > /var/www/html/index.html
+   23  cat /var/www/html/index.html
+   24  echo banana > /var/www/html/index.html
+   25  cat /var/www/html/index.html
+   26  clear
+   27  docker run --name terceiro debian /bin/ls /etc
+   28  docker container ls -a
+   29  docker run --name terceiro debian /bin/ls /tmp/
+   30  docker run --name quarto debian /bin/ls /tmp/
+   31  docker container ls -a
+   32  docker container ls
+   33  docker rm terceiro
+   34  docker container ls -a
+   35  clear
+   36  docker run -ti --name terminal debian /bin/bash
+   37  docker container ls -a
+   38  docker ps
+   39  docker run 97da35b4649d
+   40  docker ps
+   41  docker ps -a
+   42  docker start terminal
+   43  docker ps -a
+   44  docker ps
+   45  clear
+   46  docker
+   47  clear
+   48  docker ps
+   49  docker attach terminal
+   50  docker ps
+   51  docker rm -f $(docker ps -qa)
+   52  docker ps
+   53  docker ps -a
+   54  clear
+   55  docker run -ti debian /bim/bash
+   56  docker run -ti debian /bin/bash
+   57  docker ps
+   58  docker rm -f $(docker ps -qa)
+   59  clear
+   60  docker run -ti --name primeiro debian /bin/bash
+   61  docker ps
+   62  docker cp primeiro:/srv/devops -
+   63  cat devops
+   64  docker cp primeiro:/srv/devops .
+   65  cat devops
+   66  docker cp devops primeiro:/srv/
+   67  docker exec primeiro cat /srv/devops]
+   68  docker exec primeiro cat /srv/devops
+   69  clear
+   70  docker pull alpine
+   71  docker pull centos
+   72  docker image ls
+   73  docker rmi centos
+   74  docker image ls
+   75  docker ps
+   76  docker commit primeiro htopdebian:v1
+   77  docker images
+   78  docker export primeiro > envio.tar
+   79  mkdir /root/dockerfile ; cd /root/dockerfile
+   80  vim Dockerfile
+   81  echo " sou devops " > devops
+   82  docker build -t deploy .
+   83  vim Dockerfile
+   84  docker build -t deploy .
+   85  docker images
+   86  docker run deploy cat /srv/devops
+   87  mkdir /srv/data
+   88  docker run -ti --name segundo -v /srv/data:/data deploy
+   89  cd ..
+   90  docker run -ti --name segundo -v /srv/data:/data deploy
+   91  docker ps
+   92  docker start primeiro
+   93  docker attach primeiro
+   94  docker ps
+   95  docker run -ti --name segundo -v /srv/data:/data deploy
+   96  docker run -ti --name quarto -v /srv/data:/data deploy
+   97  docker run -ti --name quarto -v /srv/data:/data deploy bash
+   98  docker run -ti --name quinto -v /srv/data:/data deploy bash
+   99  cd /srv/data/
+  100  ls
+  101  cat coelho
+  102  vim coelho
+  103  docker run -ti --name quinto -v /srv/data:/data deploy bash
+  104  docker attach quinto
+  105  cd ..
+  106  docker ls
+  107  docker ps
+  108  docker ps -a
+  109  docker rm -f $(docker ps -qa)
+  110  docker ps -a
+  111  docker ps
+  112  docker images
+  113  docker images ls
+  114  docker image ls
+  115  docker rmi deploy
+  116  docker image ls
+  117  cd /root/dockerfile/
+  118  ls
+  119  vim Dockerfile 
+  120  docker build -t deploy .
+  121  docker images ls
+  122  cd ..
+  123  docker images ls
+  124  docker images
+  125  docker run deploy cat /srv/devops
+  126  docker run -ti --name segundo -v /srv/data:/data deploy
+  127  docker volume create --name backup
+  128  docker run -ti --name volume-teste -v backup:/data deploy bash
+  129  cd /var/lib/docker/volumes/backup/_data/
+  130  ls
+  131  cd ..
+  132  cd ../..
+  133  docker run -dti --name volume-teste2 -v backup:/data deploy bash
+  134  docker ps
+  135  docker exec volume-teste2 ls /data
+  136  docker exec volume-teste ls /data
+  137  docker run -d --name nginxweb nginx
+  138  docker ps
+  139  docker inspect nginxweb
+  140  curl 172.17.0.4
+  141  docker run -d --name nginxweb1 -p 8080:80 nginx
+  142  docker run -d --name nomecontainer --hostname hotnamemaquina alpine
+  143  docker network create --subnet 10.0.0.0/24 dexterlan debian
+  144  docker network create --subnet 10.0.0.0/24 dexterlan
+  145  docker run -d --name node01 --net dexterlan debian
+  146  docker inspect node01 | grep ip
+  147  docker run -dti --name node01 --net dexterlan debian bash
+  148  docker run -dti --name node02 --net dexterlan debian bash
+  149  docker inspect node01
+  150  docker inspect node02
+  151  docker inspect node02 | grep IPAddress
+  152  ss -ntpl | grep 80
+  153  systemctl stop apache2 && apt install nginx -y
+  154  ss -ntpl | grep 80
+  155  docker volume create site1
+  156  docker volume create site2
+  157  docker run -d --name site1 -v site1:/usr/local/apache2/htdocs httpd
+  158  docker run -d --name site2 -v site2:/usr/local/apache2/htdocs httpd
+  159  cd /var/lib/docker/volumes
+  160  ls
+  161  vim site1/_data/index.html
+  162  vim site2/_data/index.html
+  163  cd /etc/nginx/sites-enabled/
+  164  ls
+  165  rm default
+  166  vim docker.conf
+  167  docker inspect site1 | grep IPAdress
+  168  docker inspect site1
+  169  docker inspect site2 | grep IPAddress
+  170  vim docker.conf
+  171  systemctl restart ngnix
+  172  systemctl restart nginx
+  173  vim docker.conf
+  174  systemctl restart nginx
+  175  systemctl status nginx
+  176  vim docker.conf
+  177  systemctl status nginx
+  178  systemctl restart nginx
+  179  systemctl status nginx
+  180  cd ../..
+  181  cd ..
+  182  curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  183  chmod +x /usr/local/bin/docker-compose
+  184  docker-compose --version
+  185  mkdir -p /root/compose/wordpress
+  186  cd /root/compose/wordpress/
+  187  ls
+  188  vim docker-compose.yml
+  189  docker-compose up -d
+  190  docker volume create portainer_data
+  191  docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+  192  docker swarn init --advertise-addr 192.168.33.152
+  193  docker swarm init --advertise-addr 192.168.33.152
+  194  date
+  195  apt update
+  196  apt update 
+  197  ssh devops.dexter.com.br
+  198  puppet resourse service docker
+  199  systemctl start puppet
+  200  puppet resource service docker
+  201  docker container
+  202  docker container run --name primeiro debian
+  203  docker run
+  204  docker container run --name primeiro debian
+  205  clear
+  206  docker run --name segundo debian /bin/ls /etc
+  207  docker container list
+  208  docker container ls
+  209  docker container ls -a
+  210  bash
+  211  cd /root/
+  212  ls
+  213  git clone https://github.com/rrppedroso/InfraAgil.git
+  214  ls
+  215  cd InfraAgil/
+  216  cp -r /root/compose/* .
+  217  cp -r /root/dockerfile/* .
+  218  ls
+  219  cd ..
+  220  cp -r /root/dockerfile .
+  221  cd InfraAgil/
+  222  cp -r /root/dockerfile .
+  223  cp -r /root/compose .
+  224  ls
+  225  git add .
+  226  git status
+  227  git commit -m "aula docker"
+  228  git status
+  229  git push 
+  230  ls
+  231  rm Dockerfile 
+  232  rm devops 
+  233  ls
+  234  git status
+  235  git add .
+  236  git commit -m "aula docker"
+  237  git push
+  238  ls
+  239  rm -r wordpress/
+  240  ls
+  241  git add .
+  242  git commit -m "aula docker"
+  243  git push
+  244  exit
+  245  cd /etc/nginx/sites-enabled/
+  246  ls
+  247  cat docker.conf
+  248  ls
+  249  rm docker.conf
+  250  ls
+  251  ssh devops
+  252  cd 
+  253  ssh devops
+  254  exit
+  255  history >> /tmp/comandosDocker.txt

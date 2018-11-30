@@ -1,0 +1,17 @@
+
+- name: instalando o rundeck em cent_os
+  hosts: automation
+  tasks:
+   - name: instalando o repositorio do rundeck
+     yum:
+      name: http://repo.rundeck.org/latest.rpm
+      state: present
+
+   - name: instalando o java e o rundeck
+     package:
+      name: "{{item}}"
+     with_items:
+      - java
+      - rundeck
+
+     #nao usou lista no bloco acima porque o java eh dependencia do rundeck. Fazendo com WITH_ITEMS ele faz na sequencia.
